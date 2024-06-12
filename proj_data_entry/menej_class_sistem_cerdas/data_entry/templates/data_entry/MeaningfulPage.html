@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu dan Tabel</title>
+    <link rel="stylesheet" href="HomeStyle.css">
+</head>
+<body>
+    <div id="container">
+        <div id="sidebar">
+            <button>Home</button>
+            <button>Meaningful Objectives</button>
+            <button>Intelligence Experience</button>
+            <button>Intelligence Implementation</button>
+            <button>Intelligence Dev & RealizationIS</button>
+            <button>Setting</button>
+            <button>USER_ID | Logout</button>
+        </div>
+        <p>USER_ID</p>
+        <div id="content">
+            <h2>Home</h2>
+            <h4>Meaningful Objectives</h4>
+            <div id="table-container">
+                <table>
+                    <tr>
+                        <th>
+                            <input type="text" placeholder="Search">
+                            <button id="button">Search</button>
+                        </th>
+                    </tr>
+                </table>
+                <table>
+                    <tr id="table-header">
+                        <th>Organization Objective</th>
+                        <th>Leading Indicator</th>
+                        <th>User OutComes</th>
+                        <th>Model Properties</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>xxxxxxxxxxxxx</td>
+                        <td>xxxxxxxxxxxxx</td>
+                        <td>xxxxxxxxxxxxx</td>
+                        <td>xxxxxxxxxxxxx</td>
+                        <td>
+                            <button id="button">Update</button>
+                            <button id="button red">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h2>Meaningful Objectives</h2>
+            <div id="table-container">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group mb-0">
+                    {{ form.organization_objective | as_crispy_field }}
+                    {{ form.leading_indicator| as_crispy_field }}
+                    {{ form.user_outcomes|as_crispy_field }}
+                    {{ form.model_properties|as_crispy_field }}
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6 mb-0">
+                        {{ form.tanggal_mulai|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-6 mb-0">
+                        {{ form.tanggal_selesai|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                    {{ form.status_penyelesaian| as_crispy_field }}
+                    </div>
+                    <button type="submit">Create</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
